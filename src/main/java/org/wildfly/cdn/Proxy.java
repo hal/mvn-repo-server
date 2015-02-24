@@ -54,7 +54,7 @@ public class Proxy {
         }
 
         /**
-         * configuraiton
+         * configuration
          */
         ipAddress(ip);
         port(Integer.valueOf(ports));
