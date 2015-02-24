@@ -1,4 +1,2 @@
-./target
-
-
+target
 target/classes/org/wildfly/cdn/Proxy.class

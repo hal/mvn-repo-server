@@ -26,8 +26,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import static spark.Spark.get;
-import static spark.Spark.setPort;
-import static spark.SparkBase.externalStaticFileLocation;
+import static spark.SparkBase.*;
 
 /**
  * @author Heiko Braun
@@ -43,9 +42,22 @@ public class Proxy {
     public static void main(String[] args) throws Exception {
 
         /**
+         * Openshift settings
+         */
+        String ip = System.getenv("OPENSHIFT_INTERNAL_IP");
+        if(ip == null) {
+            ip = "localhost";
+        }
+        String ports = System.getenv("OPENSHIFT_INTERNAL_PORT");
+        if(ports == null) {
+            ports = "8080";
+        }
+
+        /**
          * configuraiton
          */
-        setPort(9090);
+        ipAddress(ip);
+        port(Integer.valueOf(ports));
 
 
         /**
@@ -63,6 +75,7 @@ public class Proxy {
          * retrieve the homepage (/index.html)
          */
         get("/", (request, response) -> {
+
             InputStream input = Proxy.class.getResourceAsStream("/index.html");
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             pipe(input, out);
