@@ -13,9 +13,9 @@ A simple proxy for HAL artefacts that reside with the JBoss maven repository.
 
 ## Supported Parameters (`-Dkey=value`)
 
-- java.io.tmpdir
-- OPENSHIFT\_INTERNAL\_IP
-- OPENSHIFT\_INTERNAL'_PORT
+* java.io.tmpdir
+* OPENSHIFT\_INTERNAL\_IP
+* OPENSHIFT\_INTERNAL'_PORT
 
 
 
