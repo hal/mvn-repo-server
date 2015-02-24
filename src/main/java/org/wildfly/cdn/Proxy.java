@@ -22,6 +22,8 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -37,7 +39,10 @@ public class Proxy {
 
     private final static String RELEASES_URL = "https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/";
     private final static String WORK_DIR = System.getProperty("java.io.tmpdir");
-    private static File wwwDir;
+
+    private static Long lastMetadataUpdate = null;
+    private static long EXPIRY_MS = 3600000; // one our
+    private static String latestVersion;
 
     public static void main(String[] args) throws Exception {
 
@@ -64,7 +69,7 @@ public class Proxy {
          * filesystem setup
          */
 
-        wwwDir = new File(WORK_DIR, "public_html");
+        final File wwwDir = new File(WORK_DIR, "public_html");
         if(!wwwDir.exists())
             wwwDir.mkdir();
 
@@ -72,14 +77,19 @@ public class Proxy {
         externalStaticFileLocation(wwwDir.getAbsolutePath());
 
         /**
+         * Locks (some operations require it)
+         */
+        final ReentrantLock artefactLock = new ReentrantLock();
+        final ReentrantLock metaDataLock = new ReentrantLock();
+
+        /**
          * retrieve the homepage (/index.html)
          */
         get("/", (request, response) -> {
-
             InputStream input = Proxy.class.getResourceAsStream("/index.html");
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             pipe(input, out);
-            return  new String(out.toByteArray());
+            return new String(out.toByteArray());
         });
 
         /**
@@ -87,45 +97,61 @@ public class Proxy {
          */
         get("/latest", (request, response) -> {
 
-            URL url = new URL(RELEASES_URL);
-            URLConnection connection = url.openConnection();
+            boolean aquired = metaDataLock.tryLock(5, TimeUnit.SECONDS);
+            if(aquired) {
 
-            Document doc = parseXML(connection.getInputStream());
-            NodeList data = doc.getElementsByTagName("data");
+                try {
+                    if(metaDataExpired()) {
+                        URL url = new URL(RELEASES_URL);
+                        URLConnection connection = url.openConnection();
 
-            StringBuffer sb = new StringBuffer();
-            List<VersionedResource> versions = new LinkedList<>();
-            for(int i=0; i<data.getLength();i++)
-            {
-                Element dataEl = (Element) data.item(i);
-                List<Element> contentItems = DomUtils.getChildElementsByTagName(dataEl, "content-item");
-                for (Element contentItem : contentItems) {
+                        Document doc = parseXML(connection.getInputStream());
+                        NodeList data = doc.getElementsByTagName("data");
 
-                    Element leaf = DomUtils.getChildElementByTagName(contentItem, "leaf");
-                    if(Boolean.valueOf(DomUtils.getTextValue(leaf)) == false)
-                    {
-                        Element text = DomUtils.getChildElementByTagName(contentItem, "text");
-                        String resourceName = DomUtils.getTextValue(text);
-                        Version version = null;
-                        try {
-                            int defaultIndex = ordinalIndexOf(resourceName, ".", 3);
-                            if(INDEX_NOT_FOUND == defaultIndex)
-                                defaultIndex = resourceName.length();
+                        List<VersionedResource> versions = new LinkedList<>();
+                        for (int i = 0; i < data.getLength(); i++) {
+                            Element dataEl = (Element) data.item(i);
+                            List<Element> contentItems = DomUtils.getChildElementsByTagName(dataEl, "content-item");
+                            for (Element contentItem : contentItems) {
 
-                            version = Version.valueOf(resourceName.substring(0, defaultIndex));
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            System.out.println(resourceName);
+                                Element leaf = DomUtils.getChildElementByTagName(contentItem, "leaf");
+                                if (Boolean.valueOf(DomUtils.getTextValue(leaf)) == false) {
+                                    Element text = DomUtils.getChildElementByTagName(contentItem, "text");
+                                    String resourceName = DomUtils.getTextValue(text);
+                                    Version version = null;
+                                    try {
+                                        int defaultIndex = ordinalIndexOf(resourceName, ".", 3);
+                                        if (INDEX_NOT_FOUND == defaultIndex)
+                                            defaultIndex = resourceName.length();
+
+                                        version = Version.valueOf(resourceName.substring(0, defaultIndex));
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                        System.out.println(resourceName);
+                                    }
+                                    versions.add(new VersionedResource(version, resourceName));
+                                }
+                            }
+
                         }
-                        versions.add(new VersionedResource(version, resourceName));
+
+                        Collections.sort(versions);
+
+                        lastMetadataUpdate = System.currentTimeMillis();
+                        latestVersion = versions.get(0).getResourceName();
                     }
+                } finally {
+                    metaDataLock.unlock();
                 }
 
+                return latestVersion;
+
             }
-
-            Collections.sort(versions);
-
-            return versions.get(0).getResourceName();
+            else
+            {
+                response.status(408);
+                return "Request timeout. Unable to retrieve latest version";
+            }
         });
 
         /**
@@ -140,21 +166,35 @@ public class Proxy {
             boolean success = false;
 
             if(!new File(destinationDir).exists()) {
-                System.out.println("Download artefacts for "+ version);
-                String fileLocation = downloadFile(fileURL, WORK_DIR);
-                if (fileLocation != null) {
-                    success = unzipJar(destinationDir, fileLocation);
-                    if(success) {
-                        response.status(200);
-                    }
-                    else {
-                        response.status(500);
-                    }
 
+                boolean aquired = artefactLock.tryLock(5, TimeUnit.SECONDS);
+                if(aquired)
+                {
+                    try {
+                        System.out.println("Download artefacts for "+ version);
+                        String fileLocation = downloadFile(fileURL, WORK_DIR);
+                        if (fileLocation != null) {
+                            success = unzipJar(destinationDir, fileLocation);
+                            if(success) {
+                                response.status(200);
+                            }
+                            else {
+                                response.status(500);
+                            }
+
+                        }
+                        else
+                        {
+                            response.status(404);
+                        }
+                    } finally {
+                        artefactLock.unlock();
+                    }
                 }
                 else
                 {
-                    response.status(404);
+                    response.status(408);
+                    System.out.println("Request timeout. Failed to quire lock on version "+version);
                 }
             }
             else
@@ -170,13 +210,19 @@ public class Proxy {
         });
     }
 
+    private static boolean metaDataExpired() {
+
+        return (null == lastMetadataUpdate)
+                || (System.currentTimeMillis()-lastMetadataUpdate > EXPIRY_MS);
+    }
+
 
     // ------------
     // Helper
 
-    public static final int INDEX_NOT_FOUND = -1;
+    private static final int INDEX_NOT_FOUND = -1;
 
-    public static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal) {
+    private static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal) {
         return ordinalIndexOf(str, searchStr, ordinal, false);
     }
 
@@ -203,7 +249,7 @@ public class Proxy {
         return index;
     }
 
-    static int lastIndexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
+    private static int lastIndexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
         return cs.toString().lastIndexOf(searchChar.toString(), start);
         //        if (cs instanceof String && searchChar instanceof String) {
         //            // TODO: Do we assume searchChar is usually relatively small;
@@ -216,7 +262,7 @@ public class Proxy {
         //        }
     }
 
-    static int indexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
+    private static int indexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
         return cs.toString().indexOf(searchChar.toString(), start);
         //        if (cs instanceof String && searchChar instanceof String) {
         //            // TODO: Do we assume searchChar is usually relatively small;
@@ -259,7 +305,7 @@ public class Proxy {
         os.close();
     }
 
-    public static boolean unzipJar(String destPath, String jarPath) {
+    private static boolean unzipJar(String destPath, String jarPath) {
         try {
 
             JarFile jarFile = new JarFile(new File(jarPath));
