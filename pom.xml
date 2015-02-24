@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.jboss.wildfly</groupId>
-    <artifactId>mvn-cdn</artifactId>
+    <artifactId>mvn-repo-server</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -23,7 +23,7 @@
     </dependencies>
 
     <build>
-        <finalName>mvn-cdn</finalName>
+        <finalName>server</finalName>
         <plugins>
 
             <plugin>
