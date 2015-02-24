@@ -1,4 +1,7 @@
 
+# Maven Repository Proxy
+
+A simple proxy for artefacts that reside with a maven repository.
 
 ## Run the server locally
 

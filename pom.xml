@@ -15,6 +15,11 @@
             <artifactId>spark-core</artifactId>
             <version>2.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.zafarkhaja</groupId>
+            <artifactId>java-semver</artifactId>
+            <version>0.8.0</version>
+        </dependency>
     </dependencies>
 
     <build>
