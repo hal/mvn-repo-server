@@ -1,11 +1,5 @@
 package org.wildfly.cdn;
 
-/**
- * @author Heiko Braun
- * @since 24/02/15
- */
-
-
 import com.github.zafarkhaja.semver.Version;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -13,6 +7,8 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,23 +19,49 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 import static spark.Spark.get;
 import static spark.Spark.setPort;
+import static spark.SparkBase.externalStaticFileLocation;
 
+/**
+ * @author Heiko Braun
+ * @since 24/02/15
+ */
 public class Proxy {
 
 
     private final static String RELEASES_URL = "https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/";
     private final static String WORK_DIR = System.getProperty("java.io.tmpdir");
+    private static File wwwDir;
 
+    public static void main(String[] args) throws Exception {
 
-    public static void main(String[] args) {
-
+        /**
+         * configuraiton
+         */
         setPort(9090);
 
+
+        /**
+         * filesystem setup
+         */
+
+        wwwDir = new File(WORK_DIR, "public_html");
+        if(!wwwDir.exists())
+            wwwDir.mkdir();
+
+        System.out.println("public_html: "+ wwwDir.getAbsolutePath());
+        externalStaticFileLocation(wwwDir.getAbsolutePath());
+
+        /**
+         * retrieve the homepage (/index.html)
+         */
         get("/", (request, response) -> {
             InputStream input = Proxy.class.getResourceAsStream("/index.html");
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -47,6 +69,9 @@ public class Proxy {
             return  new String(out.toByteArray());
         });
 
+        /**
+         * retrieve the name of the latest version
+         */
         get("/latest", (request, response) -> {
 
             URL url = new URL(RELEASES_URL);
@@ -56,7 +81,7 @@ public class Proxy {
             NodeList data = doc.getElementsByTagName("data");
 
             StringBuffer sb = new StringBuffer();
-            List<VersionedResource> versions = new LinkedList<VersionedResource>();
+            List<VersionedResource> versions = new LinkedList<>();
             for(int i=0; i<data.getLength();i++)
             {
                 Element dataEl = (Element) data.item(i);
@@ -80,15 +105,40 @@ public class Proxy {
             return versions.get(0).getResourceName();
         });
 
+        /**
+         * retrieve a particular version and serve it
+         */
         get("/builds/:version", (request, response) -> {
 
-            // 1.5.4.Final/release-stream-1.5.4.Final-resources.jar
             String version = request.params(":version");
             String fileURL = RELEASES_URL + version + "/release-stream-" + version + "-resources.jar";
-            //downloadFile(fileURL, WORK_DIR);
+            String destinationDir = wwwDir.getAbsolutePath() + File.separator + version;
+
+            if(!new File(destinationDir).exists()) {
+                System.out.println("Download artefacts for "+ version);
+                String fileLocation = downloadFile(fileURL, WORK_DIR);
+                if (fileLocation != null) {
+                    boolean success = unzipJar(destinationDir, fileLocation);
+                    if(success)
+                        response.status(200);
+                    else
+                        response.status(500);
+
+                }
+            }
+            else
+            {
+                System.out.println("Serving cached version : "+version);
+            }
+
+            response.redirect("/"+version);
             return fileURL;
         });
     }
+
+
+    // ------------
+    // Helper
 
     private static Document parseXML(InputStream stream)
             throws Exception
@@ -120,6 +170,42 @@ public class Proxy {
         os.close();
     }
 
+    public static boolean unzipJar(String destPath, String jarPath) {
+        try {
+
+            JarFile jarFile = new JarFile(new File(jarPath));
+            Enumeration<JarEntry> enums = jarFile.entries();
+            while (enums.hasMoreElements()) {
+                JarEntry entry = enums.nextElement();
+
+                File toWrite = new File(destPath + File.separator + entry.getName());
+                if (entry.isDirectory()) {
+                    toWrite.mkdirs();
+                    continue;
+                }
+                InputStream in = new BufferedInputStream(jarFile.getInputStream(entry));
+                OutputStream out = new BufferedOutputStream(new FileOutputStream(toWrite));
+                byte[] buffer = new byte[2048];
+                for (; ; ) {
+                    int nBytes = in.read(buffer);
+                    if (nBytes <= 0) {
+                        break;
+                    }
+                    out.write(buffer, 0, nBytes);
+                }
+                out.flush();
+                out.close();
+                in.close();
+
+
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     private static final int BUFFER_SIZE = 4096;
 
     /**
@@ -128,11 +214,13 @@ public class Proxy {
      * @param saveDir path of the directory to save the file
      * @throws IOException
      */
-    public static void downloadFile(String fileURL, String saveDir)
+    public static String downloadFile(String fileURL, String saveDir)
             throws IOException {
         URL url = new URL(fileURL);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
         int responseCode = httpConn.getResponseCode();
+
+        String saveFilePath = null;
 
         // always check HTTP response code first
         if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -161,7 +249,7 @@ public class Proxy {
 
             // opens input stream from the HTTP connection
             InputStream inputStream = httpConn.getInputStream();
-            String saveFilePath = saveDir + File.separator + fileName;
+            saveFilePath = saveDir + File.separator + fileName;
 
             // opens an output stream to save into file
             FileOutputStream outputStream = new FileOutputStream(saveFilePath);
@@ -180,5 +268,6 @@ public class Proxy {
             System.out.println("No file to download. Server replied HTTP code: " + responseCode);
         }
         httpConn.disconnect();
+        return saveFilePath;
     }
 }
