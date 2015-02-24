@@ -93,7 +93,17 @@ public class Proxy {
                     {
                         Element text = DomUtils.getChildElementByTagName(contentItem, "text");
                         String resourceName = DomUtils.getTextValue(text);
-                        Version version = Version.valueOf(resourceName.substring(0, 5));
+                        Version version = null;
+                        try {
+                            int defaultIndex = ordinalIndexOf(resourceName, ".", 3);
+                            if(INDEX_NOT_FOUND == defaultIndex)
+                                defaultIndex = resourceName.length();
+
+                            version = Version.valueOf(resourceName.substring(0, defaultIndex));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println(resourceName);
+                        }
                         versions.add(new VersionedResource(version, resourceName));
                     }
                 }
@@ -114,31 +124,97 @@ public class Proxy {
             String fileURL = RELEASES_URL + version + "/release-stream-" + version + "-resources.jar";
             String destinationDir = wwwDir.getAbsolutePath() + File.separator + version;
 
+            boolean success = false;
+
             if(!new File(destinationDir).exists()) {
                 System.out.println("Download artefacts for "+ version);
                 String fileLocation = downloadFile(fileURL, WORK_DIR);
                 if (fileLocation != null) {
-                    boolean success = unzipJar(destinationDir, fileLocation);
-                    if(success)
+                    success = unzipJar(destinationDir, fileLocation);
+                    if(success) {
                         response.status(200);
-                    else
+                    }
+                    else {
                         response.status(500);
+                    }
 
+                }
+                else
+                {
+                    response.status(404);
                 }
             }
             else
             {
                 System.out.println("Serving cached version : "+version);
+                success = true;
             }
 
-            response.redirect("/"+version);
-            return fileURL;
+            if(success)
+                response.redirect("/"+version);
+
+            return success ? fileURL : version + " can not be found";
         });
     }
 
 
     // ------------
     // Helper
+
+    public static final int INDEX_NOT_FOUND = -1;
+
+    public static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal) {
+        return ordinalIndexOf(str, searchStr, ordinal, false);
+    }
+
+    private static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal, final boolean lastIndex) {
+        if (str == null || searchStr == null || ordinal <= 0) {
+            return INDEX_NOT_FOUND;
+        }
+        if (searchStr.length() == 0) {
+            return lastIndex ? str.length() : 0;
+        }
+        int found = 0;
+        int index = lastIndex ? str.length() : INDEX_NOT_FOUND;
+        do {
+            if (lastIndex) {
+                index = lastIndexOf(str, searchStr, index - 1);
+            } else {
+                index = indexOf(str, searchStr, index + 1);
+            }
+            if (index < 0) {
+                return index;
+            }
+            found++;
+        } while (found < ordinal);
+        return index;
+    }
+
+    static int lastIndexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
+        return cs.toString().lastIndexOf(searchChar.toString(), start);
+        //        if (cs instanceof String && searchChar instanceof String) {
+        //            // TODO: Do we assume searchChar is usually relatively small;
+        //            //       If so then calling toString() on it is better than reverting to
+        //            //       the green implementation in the else block
+        //            return ((String) cs).lastIndexOf((String) searchChar, start);
+        //        } else {
+        //            // TODO: Implement rather than convert to String
+        //            return cs.toString().lastIndexOf(searchChar.toString(), start);
+        //        }
+    }
+
+    static int indexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
+        return cs.toString().indexOf(searchChar.toString(), start);
+        //        if (cs instanceof String && searchChar instanceof String) {
+        //            // TODO: Do we assume searchChar is usually relatively small;
+        //            //       If so then calling toString() on it is better than reverting to
+        //            //       the green implementation in the else block
+        //            return ((String) cs).indexOf((String) searchChar, start);
+        //        } else {
+        //            // TODO: Implement rather than convert to String
+        //            return cs.toString().indexOf(searchChar.toString(), start);
+        //        }
+    }
 
     private static Document parseXML(InputStream stream)
             throws Exception
