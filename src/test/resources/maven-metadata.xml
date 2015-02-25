@@ -1,0 +1,444 @@
+<content>
+  <data>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/1.5.4.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/1.5.4.Final/</relativePath>
+      <text>1.5.4.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-07-11 15:45:03.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/maven-metadata.xml</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/maven-metadata.xml</relativePath>
+      <text>maven-metadata.xml</text>
+      <leaf>true</leaf>
+      <lastModified>2015-02-24 16:13:01.0 UTC</lastModified>
+      <sizeOnDisk>2271</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/maven-metadata.xml.sha1</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/maven-metadata.xml.sha1</relativePath>
+      <text>maven-metadata.xml.sha1</text>
+      <leaf>true</leaf>
+      <lastModified>2015-02-24 16:13:01.0 UTC</lastModified>
+      <sizeOnDisk>40</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/maven-metadata.xml.md5</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/maven-metadata.xml.md5</relativePath>
+      <text>maven-metadata.xml.md5</text>
+      <leaf>true</leaf>
+      <lastModified>2015-02-24 16:13:01.0 UTC</lastModified>
+      <sizeOnDisk>32</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/1.5.5.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/1.5.5.Final/</relativePath>
+      <text>1.5.5.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-07-29 12:09:55.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/1.5.6.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/1.5.6.Final/</relativePath>
+      <text>1.5.6.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-08-06 09:47:20.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/1.5.7.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/1.5.7.Final/</relativePath>
+      <text>1.5.7.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-08-19 16:12:18.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.0.0.Beta4/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.0.0.Beta4/</relativePath>
+      <text>2.0.0.Beta4</text>
+      <leaf>false</leaf>
+      <lastModified>2013-09-18 10:08:27.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.0.0.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.0.0.Final/</relativePath>
+      <text>2.0.0.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-09-19 12:40:58.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.0.1.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.0.1.Final/</relativePath>
+      <text>2.0.1.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-10-02 07:41:37.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.0.2.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.0.2.Final/</relativePath>
+      <text>2.0.2.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-10-02 11:52:05.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.0.3.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.0.3.Final/</relativePath>
+      <text>2.0.3.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-10-04 14:50:35.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.0.4.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.0.4.Final/</relativePath>
+      <text>2.0.4.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-10-16 10:32:22.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.0.5.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.0.5.Final/</relativePath>
+      <text>2.0.5.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-10-22 09:37:24.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.0.6.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.0.6.Final/</relativePath>
+      <text>2.0.6.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-10-30 15:27:30.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.1.0.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.1.0.Final/</relativePath>
+      <text>2.1.0.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2013-12-17 00:07:16.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.1.1.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.1.1.Final/</relativePath>
+      <text>2.1.1.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-01-29 13:08:15.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.0.Beta1/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.0.Beta1/</relativePath>
+      <text>2.2.0.Beta1</text>
+      <leaf>false</leaf>
+      <lastModified>2014-02-20 22:36:23.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.0.Beta2/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.0.Beta2/</relativePath>
+      <text>2.2.0.Beta2</text>
+      <leaf>false</leaf>
+      <lastModified>2014-02-28 00:19:46.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.0.Beta3/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.0.Beta3/</relativePath>
+      <text>2.2.0.Beta3</text>
+      <leaf>false</leaf>
+      <lastModified>2014-03-04 18:34:23.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.0.Beta4/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.0.Beta4/</relativePath>
+      <text>2.2.0.Beta4</text>
+      <leaf>false</leaf>
+      <lastModified>2014-03-07 14:53:35.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.0.Beta5/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.0.Beta5/</relativePath>
+      <text>2.2.0.Beta5</text>
+      <leaf>false</leaf>
+      <lastModified>2014-03-14 01:57:36.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.0.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.0.Final/</relativePath>
+      <text>2.2.0.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-03-18 20:57:16.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.1.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.1.Final/</relativePath>
+      <text>2.2.1.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-03-21 12:03:27.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.2.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.2.Final/</relativePath>
+      <text>2.2.2.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-04-07 11:55:09.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.3.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.3.Final/</relativePath>
+      <text>2.2.3.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-04-09 09:34:00.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.4.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.4.Final/</relativePath>
+      <text>2.2.4.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-05-05 14:51:55.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.5.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.5.Final/</relativePath>
+      <text>2.2.5.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-05-11 22:43:55.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.6.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.6.Final/</relativePath>
+      <text>2.2.6.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-05-12 10:23:29.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.7.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.7.Final/</relativePath>
+      <text>2.2.7.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-05-20 09:29:58.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.8.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.8.Final/</relativePath>
+      <text>2.2.8.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-06-03 15:26:02.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.9.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.9.Final/</relativePath>
+      <text>2.2.9.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-08-11 16:44:58.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.0.Beta1-redhat/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.0.Beta1-redhat/</relativePath>
+      <text>2.4.0.Beta1-redhat</text>
+      <leaf>false</leaf>
+      <lastModified>2014-08-19 16:24:48.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.10.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.10.Final/</relativePath>
+      <text>2.2.10.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-08-19 20:48:04.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.0.Beta2-redhat/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.0.Beta2-redhat/</relativePath>
+      <text>2.4.0.Beta2-redhat</text>
+      <leaf>false</leaf>
+      <lastModified>2014-08-20 08:59:57.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.0.Beta3/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.0.Beta3/</relativePath>
+      <text>2.4.0.Beta3</text>
+      <leaf>false</leaf>
+      <lastModified>2014-09-10 12:07:08.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.0.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.0.Final/</relativePath>
+      <text>2.4.0.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-09-18 14:55:34.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.1.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.1.Final/</relativePath>
+      <text>2.4.1.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-09-25 12:34:52.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.2.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.2.Final/</relativePath>
+      <text>2.4.2.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-10-02 07:51:17.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.11.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.11.Final/</relativePath>
+      <text>2.2.11.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-10-06 06:37:56.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.2.12.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.2.12.Final/</relativePath>
+      <text>2.2.12.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-10-09 07:05:41.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.3.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.3.Final/</relativePath>
+      <text>2.4.3.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-10-09 11:10:57.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.4.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.4.Final/</relativePath>
+      <text>2.4.4.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-10-16 14:43:02.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.5.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.5.Final/</relativePath>
+      <text>2.4.5.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-10-30 10:03:47.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.6.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.6.Final/</relativePath>
+      <text>2.4.6.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-11-06 09:46:20.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.7.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.7.Final/</relativePath>
+      <text>2.4.7.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-11-13 16:15:08.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.8.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.8.Final/</relativePath>
+      <text>2.4.8.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-11-20 12:55:45.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.4.9.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.4.9.Final/</relativePath>
+      <text>2.4.9.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-11-21 00:21:14.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.5.0.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.5.0.Final/</relativePath>
+      <text>2.5.0.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-12-01 21:14:26.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.5.1/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.5.1/</relativePath>
+      <text>2.5.1</text>
+      <leaf>false</leaf>
+      <lastModified>2014-12-04 16:41:55.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.5.2.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.5.2.Final/</relativePath>
+      <text>2.5.2.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2014-12-22 12:29:33.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.5.3.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.5.3.Final/</relativePath>
+      <text>2.5.3.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2015-01-23 19:46:12.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.5.4.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.5.4.Final/</relativePath>
+      <text>2.5.4.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2015-02-18 13:28:12.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.5.5.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.5.5.Final/</relativePath>
+      <text>2.5.5.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2015-02-19 10:04:36.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/2.6.0.Final/</resourceURI>
+      <relativePath>/org/jboss/hal/release-stream/2.6.0.Final/</relativePath>
+      <text>2.6.0.Final</text>
+      <leaf>false</leaf>
+      <lastModified>2015-02-24 16:13:02.0 UTC</lastModified>
+      <sizeOnDisk>-1</sizeOnDisk>
+    </content-item>
+  </data>
+</content>

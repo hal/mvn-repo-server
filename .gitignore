@@ -1,2 +1,4 @@
 target
 target/classes/org/wildfly/cdn/Proxy.class
+src/.DS_Store
+.DS_Store

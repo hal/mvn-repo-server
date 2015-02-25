@@ -20,6 +20,11 @@
             <artifactId>java-semver</artifactId>
             <version>0.8.0</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -33,6 +38,17 @@
                 <executions>
                     <execution>
                         <id>default-compile</id>
+                        <configuration>
+                            <showDeprecation>true</showDeprecation>
+                            <showWarnings>true</showWarnings>
+                            <compilerArguments>
+                                <source>1.8</source>
+                                <target>1.8</target>
+                            </compilerArguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-testCompile</id>
                         <configuration>
                             <showDeprecation>true</showDeprecation>
                             <showWarnings>true</showWarnings>
