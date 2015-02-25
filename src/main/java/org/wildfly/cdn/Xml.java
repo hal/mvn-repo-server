@@ -8,6 +8,10 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -72,7 +76,9 @@ public class Xml {
         try {
             Document doc = parseXML(in);
             NodeList data = doc.getElementsByTagName("data");
-            VersionedResource snapshotResource = null;
+
+            List<VersionedResource> snapshots = new LinkedList<>();
+
             for (int i = 0; i < data.getLength(); i++) {
                 Element dataEl = (Element) data.item(i);
                 List<Element> contentItems = DomUtils.getChildElementsByTagName(dataEl, "content-item");
@@ -88,16 +94,30 @@ public class Xml {
                             Element resourceURI = DomUtils.getChildElementByTagName(contentItem, "resourceURI");
                             String artefactUrl = DomUtils.getTextValue(resourceURI);
 
+
+                            Element lastModified = DomUtils.getChildElementByTagName(contentItem, "lastModified");
+                            Date modified = Versions.parseDate(DomUtils.getTextValue(lastModified));
                             Version version = Versions.parseVersion(versionString);
-                            snapshotResource = new VersionedResource(version, resourceName, artefactUrl);
-                            break;
+                            VersionedResource resource = new VersionedResource(version, resourceName, artefactUrl);
+                            resource.setLastModified(modified);
+                            snapshots.add(resource);
                         }
 
                     }
                 }
             }
 
-            return snapshotResource;
+            System.out.println("Found "+snapshots.size()+" snapshots for "+versionString);
+
+            Collections.sort(snapshots, new Comparator<VersionedResource>() {
+                @Override
+                public int compare(VersionedResource o1, VersionedResource o2) {
+                    return o2.getModified().compareTo(o1.getModified());
+                }
+            });
+
+            return snapshots.get(0);
+
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

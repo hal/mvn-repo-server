@@ -4,7 +4,11 @@ import com.github.zafarkhaja.semver.Version;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -59,5 +63,18 @@ public class ProxyTest {
                 "https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-resources.jar",
                 snapshotResource.getArtefactUrl()
         );
+    }
+
+    @Test
+    public void testDateParser() throws Exception {
+        String dateString = "2014-08-20 08:44:15.0 UTC";
+        SimpleDateFormat parser =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = parser.parse(dateString);
+        assertNotNull(date);
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int year = cal.get(Calendar.YEAR);
+        assertEquals(2014, year);
     }
 }

@@ -2,6 +2,9 @@ package org.wildfly.cdn;
 
 import com.github.zafarkhaja.semver.Version;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author Heiko Braun
  * @since 25/02/15
@@ -23,6 +26,12 @@ public class Versions {
             System.out.println(versionString);
         }
         return version;
+    }
+
+    public static Date parseDate(String dateString) throws Exception {
+        SimpleDateFormat parser =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = parser.parse(dateString);
+        return date;
     }
 
     public static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal) {
