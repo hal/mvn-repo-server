@@ -127,7 +127,7 @@ public class Proxy {
         /**
          * retrieve a particular version and serve it
          */
-        get("/builds/:version", (request, response) -> {
+        get("/release/:version", (request, response) -> {
 
             String version = request.params(":version");
             String fileURL = repo + version + "/release-stream-" + version + "-resources.jar";
