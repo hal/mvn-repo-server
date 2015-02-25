@@ -3,13 +3,20 @@ package org.wildfly.cdn;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Enumeration;
+import java.util.Optional;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -63,7 +70,7 @@ public class Files {
      * @param saveDir path of the directory to save the file
      * @throws IOException
      */
-    public static String downloadFile(String fileURL, String saveDir)
+    public static Optional<String> downloadFile(String fileURL, String saveDir)
             throws IOException {
         URL url = new URL(fileURL);
         HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -117,7 +124,7 @@ public class Files {
             System.out.println("No file to download. Server replied HTTP code: " + responseCode);
         }
         httpConn.disconnect();
-        return saveFilePath;
+        return saveFilePath!=null ? Optional.of(saveFilePath) : Optional.empty();
     }
 
     public static void pipe(InputStream is, OutputStream os) throws IOException {
@@ -129,4 +136,22 @@ public class Files {
         os.close();
     }
 
+    public static void deleteRecursive(File path) throws IOException {
+
+        Path directory = Paths.get(path.getAbsolutePath());
+        java.nio.file.Files.walkFileTree(directory, new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                java.nio.file.Files.delete(file);
+                return FileVisitResult.CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                java.nio.file.Files.delete(dir);
+                return FileVisitResult.CONTINUE;
+            }
+
+        });
+    }
 }

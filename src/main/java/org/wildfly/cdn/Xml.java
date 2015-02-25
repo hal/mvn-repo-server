@@ -66,4 +66,40 @@ public class Xml {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+    public static VersionedResource parseSnapshotMetadata(InputStream in, final String versionString) {
+
+        try {
+            Document doc = parseXML(in);
+            NodeList data = doc.getElementsByTagName("data");
+            VersionedResource snapshotResource = null;
+            for (int i = 0; i < data.getLength(); i++) {
+                Element dataEl = (Element) data.item(i);
+                List<Element> contentItems = DomUtils.getChildElementsByTagName(dataEl, "content-item");
+                for (Element contentItem : contentItems) {
+
+                    Element leaf = DomUtils.getChildElementByTagName(contentItem, "leaf");
+                    if (Boolean.valueOf(DomUtils.getTextValue(leaf)) == true) {
+                        Element text = DomUtils.getChildElementByTagName(contentItem, "text");
+                        String resourceName = DomUtils.getTextValue(text);
+
+                        if(resourceName.endsWith("-resources.jar"))
+                        {
+                            Element resourceURI = DomUtils.getChildElementByTagName(contentItem, "resourceURI");
+                            String artefactUrl = DomUtils.getTextValue(resourceURI);
+
+                            Version version = Versions.parseVersion(versionString);
+                            snapshotResource = new VersionedResource(version, resourceName, artefactUrl);
+                            break;
+                        }
+
+                    }
+                }
+            }
+
+            return snapshotResource;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
 }

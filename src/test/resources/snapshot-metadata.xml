@@ -1,0 +1,124 @@
+<content>
+  <data>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/maven-metadata.xml</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/maven-metadata.xml</relativePath>
+      <text>maven-metadata.xml</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:36.0 UTC</lastModified>
+      <sizeOnDisk>1208</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/maven-metadata.xml.sha1</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/maven-metadata.xml.sha1</relativePath>
+      <text>maven-metadata.xml.sha1</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:37.0 UTC</lastModified>
+      <sizeOnDisk>40</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/maven-metadata.xml.md5</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/maven-metadata.xml.md5</relativePath>
+      <text>maven-metadata.xml.md5</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:37.0 UTC</lastModified>
+      <sizeOnDisk>32</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.war</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.war</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6.war</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:14.0 UTC</lastModified>
+      <sizeOnDisk>57634</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.war.sha1</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.war.sha1</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6.war.sha1</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:15.0 UTC</lastModified>
+      <sizeOnDisk>40</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.war.md5</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.war.md5</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6.war.md5</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:15.0 UTC</lastModified>
+      <sizeOnDisk>32</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.pom</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.pom</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6.pom</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:15.0 UTC</lastModified>
+      <sizeOnDisk>1771</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.pom.sha1</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.pom.sha1</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6.pom.sha1</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:15.0 UTC</lastModified>
+      <sizeOnDisk>40</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.pom.md5</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6.pom.md5</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6.pom.md5</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:16.0 UTC</lastModified>
+      <sizeOnDisk>32</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-sources.jar</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-sources.jar</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6-sources.jar</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:18.0 UTC</lastModified>
+      <sizeOnDisk>2299336</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-sources.jar.sha1</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-sources.jar.sha1</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6-sources.jar.sha1</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:26.0 UTC</lastModified>
+      <sizeOnDisk>40</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-sources.jar.md5</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-sources.jar.md5</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6-sources.jar.md5</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:26.0 UTC</lastModified>
+      <sizeOnDisk>32</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-resources.jar</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-resources.jar</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6-resources.jar</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:28.0 UTC</lastModified>
+      <sizeOnDisk>1922500</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-resources.jar.sha1</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-resources.jar.sha1</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6-resources.jar.sha1</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:36.0 UTC</lastModified>
+      <sizeOnDisk>40</sizeOnDisk>
+    </content-item>
+    <content-item>
+      <resourceURI>https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-resources.jar.md5</resourceURI>
+      <relativePath>/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-resources.jar.md5</relativePath>
+      <text>jboss-as-console-2.4.0-20140820.084413-6-resources.jar.md5</text>
+      <leaf>true</leaf>
+      <lastModified>2014-08-20 08:44:36.0 UTC</lastModified>
+      <sizeOnDisk>32</sizeOnDisk>
+    </content-item>
+  </data>
+</content>

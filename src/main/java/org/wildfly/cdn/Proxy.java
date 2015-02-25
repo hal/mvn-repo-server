@@ -5,9 +5,11 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.rmi.server.ExportException;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -24,6 +26,9 @@ public class Proxy {
     private final static String DEFAULT_REPO =
             "https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/";
 
+    private final static String SNAPSHOT_REPO =
+            "https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/";
+
     private final static String WORK_DIR = System.getProperty("java.io.tmpdir");
 
     private static Long lastMetadataUpdate = null;
@@ -32,9 +37,6 @@ public class Proxy {
 
     public static void main(String[] args) throws Exception {
 
-
-        final String repo = System.getenv("M2_REPO") !=null ?
-                System.getenv("M2_REPO") : DEFAULT_REPO;
 
         /**
          * Openshift settings
@@ -71,6 +73,7 @@ public class Proxy {
          */
         final ReentrantLock artefactLock = new ReentrantLock();
         final ReentrantLock metaDataLock = new ReentrantLock();
+        final ReentrantLock snapshotLock = new ReentrantLock();
 
         /**
          * retrieve the homepage (/index.html)
@@ -95,7 +98,7 @@ public class Proxy {
 
                 try {
                     if(metaDataExpired()) {
-                        URL url = new URL(repo);
+                        URL url = new URL(DEFAULT_REPO);
                         URLConnection connection = url.openConnection();
 
                         List<VersionedResource> versions = new LinkedList<>();
@@ -130,7 +133,7 @@ public class Proxy {
         get("/release/:version", (request, response) -> {
 
             String version = request.params(":version");
-            String fileURL = repo + version + "/release-stream-" + version + "-resources.jar";
+            String fileURL = DEFAULT_REPO + version + "/release-stream-" + version + "-resources.jar";
             String destinationDir = wwwDir.getAbsolutePath() + File.separator + version;
 
             boolean success = false;
@@ -142,9 +145,9 @@ public class Proxy {
                 {
                     try {
                         System.out.println("Download artefacts for "+ version);
-                        String fileLocation = Files.downloadFile(fileURL, WORK_DIR);
-                        if (fileLocation != null) {
-                            success = Files.unzipJar(destinationDir, fileLocation);
+                        Optional<String> fileLocation = Files.downloadFile(fileURL, WORK_DIR);
+                        if (fileLocation.isPresent()) {
+                            success = Files.unzipJar(destinationDir, fileLocation.get());
                             if(success) {
                                 response.status(200);
                             }
@@ -177,6 +180,84 @@ public class Proxy {
                 response.redirect("/"+version);
 
             return success ? fileURL : version + " can not be found";
+        });
+
+
+        /**
+         * retrieve a particular snapshot and serve it
+         */
+        get("/snapshot/:version", (request, response) -> {
+
+            String version = request.params(":version");
+            String xmlURL = SNAPSHOT_REPO + version;
+
+            String destinationDir = wwwDir.getAbsolutePath() + File.separator + version;
+
+            // retrieve snapshot meta data and identify latest binary
+            URL url = new URL(xmlURL);
+            URLConnection connection = url.openConnection();
+
+            VersionedResource snapshotResource;
+            try {
+                snapshotResource = Xml.parseSnapshotMetadata(connection.getInputStream(), version);
+            } catch(Exception e) {
+                response.status(404);
+                return version + " can not be found";
+            }
+
+            File snapshotDir = new File(destinationDir);
+            File marker = new File(snapshotDir, snapshotResource.getResourceName());
+            boolean success = false;
+
+            if(!marker.exists()) // new versions get their own marker based on the specific snapshot name
+            {
+
+                boolean aquired = snapshotLock.tryLock(5, TimeUnit.SECONDS);
+                if(aquired)
+                {
+                    try {
+                        // a newer snapshot supersedes the current one
+                        if(snapshotDir.exists()) {
+                            Files.deleteRecursive(snapshotDir);
+                        }
+
+                        // download and unpack new version
+                        Optional<String> fileLocation = Files.downloadFile(snapshotResource.getArtefactUrl(), WORK_DIR);
+
+                        if (fileLocation.isPresent()) {
+
+                            success = Files.unzipJar(destinationDir, fileLocation.get());
+
+                            if(success) {
+                                response.status(200);
+                                // create marker
+                                marker.createNewFile();
+
+                            }
+                            else {
+                                response.status(500);
+                            }
+                        }
+                        else
+                        {
+                            response.status(404);
+                        }
+                    } finally {
+                        snapshotLock.unlock();
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("Serving cached version : "+version);
+                success = true;
+            }
+
+            if(success)
+                response.redirect("/"+version);
+
+            return success ? snapshotResource.getArtefactUrl() : version + " can not be found";
+
         });
     }
 

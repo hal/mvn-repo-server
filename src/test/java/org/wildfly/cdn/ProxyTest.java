@@ -4,6 +4,9 @@ import com.github.zafarkhaja.semver.Version;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.wildfly.cdn.Versions.parseVersion;
@@ -37,12 +40,24 @@ public class ProxyTest {
     @Test
     public void testXmlParsing() {
         InputStream in = ProxyTest.class.getResourceAsStream("/maven-metadata.xml");
-        assertNotNull("Failed to read maven-metadat.xml", in);
+        assertNotNull("Failed to read maven-metadata.xml", in);
 
         Xml.parseMetadata(
                 in,
                 (VersionedResource resource) -> {
                     assertNotNull(resource);
                 });
+    }
+
+    @Test
+    public void testSnapshotXmlParsing() {
+        InputStream in = ProxyTest.class.getResourceAsStream("/snapshot-metadata.xml");
+        assertNotNull("Failed to read snapshot-metadata.xml", in);
+
+        VersionedResource snapshotResource = Xml.parseSnapshotMetadata(in, "2.4.0-SNAPSHOT");
+        assertEquals(
+                "https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/2.4.0-SNAPSHOT/jboss-as-console-2.4.0-20140820.084413-6-resources.jar",
+                snapshotResource.getArtefactUrl()
+        );
     }
 }

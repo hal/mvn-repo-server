@@ -25,11 +25,11 @@ public class Versions {
         return version;
     }
 
-    private static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal) {
+    public static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal) {
         return ordinalIndexOf(str, searchStr, ordinal, false);
     }
 
-    private static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal, final boolean lastIndex) {
+    public static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal, final boolean lastIndex) {
         if (str == null || searchStr == null || ordinal <= 0) {
             return INDEX_NOT_FOUND;
         }
@@ -52,7 +52,7 @@ public class Versions {
         return index;
     }
 
-    private static int lastIndexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
+    public static int lastIndexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
         return cs.toString().lastIndexOf(searchChar.toString(), start);
         //        if (cs instanceof String && searchChar instanceof String) {
         //            // TODO: Do we assume searchChar is usually relatively small;
@@ -65,7 +65,7 @@ public class Versions {
         //        }
     }
 
-    private static int indexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
+    public static int indexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
         return cs.toString().indexOf(searchChar.toString(), start);
         //        if (cs instanceof String && searchChar instanceof String) {
         //            // TODO: Do we assume searchChar is usually relatively small;
