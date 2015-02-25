@@ -8,7 +8,6 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -57,7 +56,7 @@ public class Xml {
                     if (Boolean.valueOf(DomUtils.getTextValue(leaf)) == false) {
                         Element text = DomUtils.getChildElementByTagName(contentItem, "text");
                         String resourceName = DomUtils.getTextValue(text);
-                        Version version = VersionUtils.parseVersion(resourceName);
+                        Version version = Versions.parseVersion(resourceName);
                         handler.handle(new VersionedResource(version, resourceName));
                     }
                 }

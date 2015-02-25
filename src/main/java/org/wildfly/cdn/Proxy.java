@@ -79,6 +79,9 @@ public class Proxy {
             InputStream input = Proxy.class.getResourceAsStream("/index.html");
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             Files.pipe(input, out);
+
+            response.header("x-server-version", Version.VERSION);
+
             return new String(out.toByteArray());
         });
 
