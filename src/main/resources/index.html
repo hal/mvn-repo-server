@@ -1,11 +1,24 @@
-<html>
-<body>
-<h1>HAL Build Proxy</h1>
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>HAL Build Proxy</title>
+    <meta name="description" content="HAL Build Proxy">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/normalize/3.0.2/normalize.min.css">
+    <style>
+        body {margin:1em;}
+        th, td {padding:.5em;}
+    </style>
+</head>
+<body>
+
+<h1>HAL Build Proxy</h1>
 Welcome, I am the HAL build proxy. I serve HAL web console builds and I don't wont to be pretty.
 
 <h2>API Endpoints</h2>
-
 <table border="1" cellpadding="10">
     <tr>
         <th>URL</th>
@@ -20,7 +33,7 @@ Welcome, I am the HAL build proxy. I serve HAL web console builds and I don't wo
     <tr>
         <td>/release/:version</td>
         <td>Serves a specific HAL version (only works with version > 2.6.x)</td>
-        <td>/release/2.6.4.Final</>
+        <td>/release/2.6.4.Final</td>
     </tr>
     <tr>
         <td>/snapshot/:version</td>
@@ -30,11 +43,17 @@ Welcome, I am the HAL build proxy. I serve HAL web console builds and I don't wo
 
 </table>
 
+<h2>References</h2>
 <ul>
     <li><a href="http://github.com/hal">HAL Project</a></li>
-    <li><a href="http://github.com/hal/mvn-repo-server">Build Server</a></li>
+    <li>
+        <a href="http://hal.gitbooks.io/dev/content/">HAL Documentation</a>
+        <ul>
+            <li><a href="http://hal.gitbooks.io/dev/content/release-coordination/versions/README.html">Released Versions</a></li>
+        </ul>
+    </li>
+    <li><a href="http://github.com/hal/mvn-repo-server">Build Proxy Source</a></li>
     <li><a href="http://jboss.org">JBoss.org</a></li>
 </ul>
-
 </body>
 </html>
