@@ -5,14 +5,15 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
-import java.rmi.server.ExportException;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
+import static java.util.stream.Collectors.joining;
 import static spark.Spark.get;
 import static spark.SparkBase.*;
 
@@ -29,6 +30,8 @@ public class Proxy {
     private final static String SNAPSHOT_REPO =
             "https://repository.jboss.org/nexus/service/local/repositories/snapshots/content/org/jboss/as/jboss-as-console/";
 
+    private final static com.github.zafarkhaja.semver.Version CORS_SUPPORT_START = com.github.zafarkhaja.semver.Version.valueOf("2.6.5");
+
     private final static String WORK_DIR = System.getProperty("java.io.tmpdir");
 
     private static Long lastMetadataUpdate = null;
@@ -42,11 +45,11 @@ public class Proxy {
          * Openshift settings
          */
         String ip = System.getenv("OPENSHIFT_INTERNAL_IP");
-        if(ip == null) {
+        if (ip == null) {
             ip = "localhost";
         }
         String ports = System.getenv("OPENSHIFT_INTERNAL_PORT");
-        if(ports == null) {
+        if (ports == null) {
             ports = "8080";
         }
 
@@ -117,6 +120,7 @@ public class Proxy {
                     metaDataLock.unlock();
                 }
 
+                response.type("text/plain");
                 return latestVersion;
 
             }
@@ -124,6 +128,34 @@ public class Proxy {
             {
                 response.status(408);
                 return "Request timeout. Unable to retrieve latest version";
+            }
+        });
+
+        get("/releases", (request, response) -> {
+            boolean acquired = metaDataLock.tryLock(5, TimeUnit.SECONDS);
+            if (acquired) {
+                try {
+                    URL url = new URL(DEFAULT_REPO);
+                    URLConnection connection = url.openConnection();
+
+                    List<VersionedResource> versions = new LinkedList<>();
+                    Xml.parseMetadata(connection.getInputStream(), versions::add);
+
+                    String currentUrl = request.url().substring(0, request.url().indexOf("/releases"));
+                    String releases = versions.stream()
+                            .filter(version -> version.getVersion().greaterThanOrEqualTo(CORS_SUPPORT_START))
+                            .sorted(Comparator.<VersionedResource>reverseOrder())
+                            .map(version -> currentUrl + "/release/" + version.getResourceName())
+                            .collect(joining("\n"));
+                    response.type("text/plain");
+                    response.status(200);
+                    return releases;
+                } finally {
+                    metaDataLock.unlock();
+                }
+            } else {
+                response.status(408);
+                return "Request timeout. Unable to retrieve releases";
             }
         });
 
@@ -261,11 +293,8 @@ public class Proxy {
         });
     }
 
-
     private static boolean metaDataExpired() {
-
         return (null == lastMetadataUpdate)
                 || (System.currentTimeMillis()-lastMetadataUpdate > EXPIRY_MS);
     }
-
 }
