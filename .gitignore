@@ -1,4 +1,5 @@
 *.iml
+openshift
 target
 .DS_Store
 .idea
