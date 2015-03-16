@@ -1,21 +1,20 @@
-
 # Maven Repository Proxy
 
-A simple proxy for HAL artefacts that reside with the JBoss maven repository.
+A simple proxy for HAL artifacts that reside with the JBoss maven repository.
 
 ## Run the server locally
 
-`mvn exec:java -Dexec.mainClass="org.wildfly.cdn.Proxy"`
+        mvn clean package
+        java -jar target/server-jar-with-dependencies.jar
 
-## Run it on openshift
+## Run it on OpenShift
 
-`java -jar target/mvn-cdn-jar-with-dependencies.jar -Djava.io.tmpdir=<tmp.dir>`
+        java -jar target/server-jar-with-dependencies.jar -Djava.io.tmpdir=<tmp.dir>
 
-## Supported Parameters (`-Dkey=value`)
+## Supported Parameters
+
+Set as system properties before starting the server
 
 * java.io.tmpdir
-* OPENSHIFT\_INTERNAL\_IP
-* OPENSHIFT\_INTERNAL'_PORT
-
-
-
+* OPENSHIFT_INTERNAL_IP
+* OPENSHIFT_INTERNAL_PORT
