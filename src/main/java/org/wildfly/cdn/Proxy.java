@@ -23,7 +23,6 @@ import static spark.SparkBase.*;
  */
 public class Proxy {
 
-
     private final static String DEFAULT_REPO =
             "https://repository.jboss.org/nexus/service/local/repositories/releases/content/org/jboss/hal/release-stream/";
 
@@ -39,7 +38,6 @@ public class Proxy {
     private static String latestVersion;
 
     public static void main(String[] args) throws Exception {
-
 
         /**
          * Openshift settings
