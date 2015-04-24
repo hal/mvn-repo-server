@@ -103,11 +103,7 @@ public class Proxy {
                         URLConnection connection = url.openConnection();
 
                         List<VersionedResource> versions = new LinkedList<>();
-                        Xml.parseMetadata(
-                                connection.getInputStream(),
-                                (VersionedResource resource) -> {
-                                    versions.add(resource);
-                                });
+                        Xml.parseMetadata(connection.getInputStream(), versions::add);
 
                         Collections.sort(versions);
 
@@ -119,6 +115,8 @@ public class Proxy {
                 }
 
                 response.type("text/plain");
+                response.header("Access-Control-Allow-Origin", "*");
+                response.header("Access-Control-Request-Method", "GET");
                 return latestVersion;
 
             }
